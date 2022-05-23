@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ class LoginController extends Controller
         return view('doctor.login');
     }
 
-    public function processLogin(Request $request)
+    public function processLogin(LoginRequest $request)
     {
         $credentials = $request->except(['_token']);
         $doctor = Doctor::where('email', $request->email)->first();

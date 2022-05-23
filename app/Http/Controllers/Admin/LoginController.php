@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ class LoginController extends Controller
         return view('admin.login');
     }
 
-    public function processLogin(Request $request)
+    public function processLogin(LoginRequest $request)
     {
         $credentials = $request->except(['_token']);
         $doctor = Admin::where('email', $request->email)->first();
